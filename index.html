@@ -1463,61 +1463,6 @@
     .whatsapp-float::after { width: 6px; height: 6px; }
   }
 
-  /* ═══════════ TWEAKS TOGGLE ═══════════ */
-  .tweaks-toggle {
-    position: fixed;
-    bottom: 100px; right: 28px;
-    z-index: 90;
-    width: 44px; height: 44px;
-    background: var(--bg-2);
-    border: 1px solid var(--line-bright);
-    color: var(--fg-dim);
-    display: flex; align-items: center; justify-content: center;
-    transition: all .2s ease;
-  }
-  .tweaks-toggle svg { width: 20px; height: 20px; }
-  .tweaks-toggle:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(-1px);
-  }
-  @media (max-width: 768px) {
-    .tweaks-toggle { bottom: 80px; right: 16px; left: auto; width: 40px; height: 40px; }
-    .tweaks-toggle svg { width: 18px; height: 18px; }
-  }
-
-  /* ═══════════ TWEAKS PANEL ═══════════ */
-  #tweaks {
-    position: fixed;
-    right: 24px; top: 100px;
-    z-index: 100;
-    background: var(--bg-2);
-    border: 1px solid var(--line-bright);
-    padding: 20px;
-    width: 260px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--fg);
-    display: none;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-  }
-  #tweaks.show { display: block; }
-  #tweaks h4 { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
-  #tweaks .tw-section { margin-bottom: 18px; }
-  #tweaks .tw-label { font-size: 10px; color: var(--fg-faint); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px; display: block; }
-  #tweaks .tw-opts { display: grid; gap: 6px; }
-  #tweaks .tw-opts button {
-    padding: 10px 12px;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    color: var(--fg-dim);
-    text-align: left;
-    font: inherit;
-    transition: all .15s ease;
-  }
-  #tweaks .tw-opts button:hover { border-color: var(--line-bright); color: var(--fg); }
-  #tweaks .tw-opts button.active { background: var(--accent); color: var(--accent-contrast); border-color: var(--accent); }
-  #tweaks .tw-close { position: absolute; top: 10px; right: 14px; color: var(--fg-dim); font-size: 18px; }
   @media (max-width: 900px) {
     .nav-links, .nav-cta { display: none; }
     .menu-btn { display: inline-flex; }
@@ -1646,11 +1591,6 @@
     .footer-bottom { font-size: 10px; flex-direction: column; gap: 8px; }
 
     .whatsapp-float { bottom: 16px; right: 16px; }
-
-    #tweaks {
-      right: 12px; left: 12px; top: auto; bottom: 80px;
-      width: auto; max-width: none;
-    }
   }
 
   @media (max-width: 420px) {
@@ -2463,43 +2403,6 @@
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- Tweaks toggle button -->
-<button class="tweaks-toggle" id="tweaksToggle" aria-label="Open design tweaks">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
-    <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
-    <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
-    <line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
-  </svg>
-</button>
-
-<!-- TWEAKS PANEL -->
-<div id="tweaks">
-  <button class="tw-close" onclick="toggleTweaks(false)" aria-label="Close">×</button>
-  <h4 data-i18n="tweaks.title">Tweaks</h4>
-  <div class="tw-section">
-    <label class="tw-label" data-i18n="tweaks.accent">Accent</label>
-    <div class="tw-opts" id="tw-accent" style="grid-template-columns: repeat(4, 1fr); display: grid; gap: 6px;">
-      <button data-a="default" style="aspect-ratio:1; padding:0;" aria-label="Default"></button>
-      <button data-a="#ff5a1f" style="aspect-ratio:1; padding:0; background:#ff5a1f; border-color:#ff5a1f" aria-label="Orange"></button>
-      <button data-a="#d4a857" style="aspect-ratio:1; padding:0; background:#d4a857; border-color:#d4a857" aria-label="Gold"></button>
-      <button data-a="#00e0a8" style="aspect-ratio:1; padding:0; background:#00e0a8; border-color:#00e0a8" aria-label="Mint"></button>
-      <button data-a="#ef3e3e" style="aspect-ratio:1; padding:0; background:#ef3e3e; border-color:#ef3e3e" aria-label="Red"></button>
-      <button data-a="#5b9eff" style="aspect-ratio:1; padding:0; background:#5b9eff; border-color:#5b9eff" aria-label="Blue"></button>
-      <button data-a="#a78bfa" style="aspect-ratio:1; padding:0; background:#a78bfa; border-color:#a78bfa" aria-label="Violet"></button>
-      <button data-a="#f5f5f2" style="aspect-ratio:1; padding:0; background:#f5f5f2; border-color:#f5f5f2" aria-label="White"></button>
-    </div>
-  </div>
-  <div class="tw-section">
-    <label class="tw-label" data-i18n="tweaks.density">Density</label>
-    <div class="tw-opts" id="tw-density">
-      <button data-d="comfy" data-i18n="tweaks.comfy">Comfortable</button>
-      <button data-d="compact" data-i18n="tweaks.compact">Compact</button>
-    </div>
-  </div>
-  <div style="font-size: 10px; color: var(--fg-faint); margin-top: 12px; letter-spacing: 0.08em;" data-i18n="tweaks.persist">Tweaks persist across reload.</div>
-</div>
-
 <!-- Sticky notes pinboard — body-level so nothing affects its fixed positioning.
      MUST be before the main <script> so pinboardModule can find it on run.
      Mobile: pinboard is always visible; notes with visible_on_mobile:true
@@ -2507,64 +2410,6 @@
 <div class="pinboard" id="pinboard" aria-label="Sticky notes"></div>
 
 <script>
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "accent": "default",
-    "density": "comfy"
-  }/*EDITMODE-END*/;
-
-  const LS_KEY = "welding-tweaks-v2";
-  function getTweaks() {
-    try { return { ...TWEAK_DEFAULTS, ...JSON.parse(localStorage.getItem(LS_KEY) || "{}") }; }
-    catch { return { ...TWEAK_DEFAULTS }; }
-  }
-  function setTweaks(t) {
-    localStorage.setItem(LS_KEY, JSON.stringify(t));
-    applyTweaks(t);
-  }
-  function applyTweaks(t) {
-    // clear any previous overrides (on html, body, and all sections)
-    document.documentElement.style.removeProperty("--accent");
-    document.body.style.removeProperty("--accent");
-    document.querySelectorAll("section, .cta-strip").forEach(s => s.style.removeProperty("--accent"));
-    if (t.accent && t.accent !== "default") {
-      document.body.style.setProperty("--accent", t.accent, "important");
-    }
-    document.body.style.setProperty("--gutter", t.density === "compact" ? "24px" : "32px");
-    document.querySelectorAll("section.block").forEach(s => {
-      s.style.padding = t.density === "compact" ? "80px 0" : "";
-    });
-    document.querySelectorAll("#tw-accent button").forEach(b => b.classList.toggle("active", b.dataset.a === t.accent));
-    document.querySelectorAll("#tw-density button").forEach(b => b.classList.toggle("active", b.dataset.d === t.density));
-  }
-  function toggleTweaks(show) {
-    const el = document.getElementById("tweaks");
-    if (typeof show === "boolean") el.classList.toggle("show", show);
-    else el.classList.toggle("show");
-  }
-
-  document.querySelectorAll("#tw-accent button").forEach(b => {
-    b.addEventListener("click", () => {
-      const t = getTweaks(); t.accent = b.dataset.a; setTweaks(t);
-      window.parent.postMessage({type:'__edit_mode_set_keys', edits:{accent:b.dataset.a}}, '*');
-    });
-  });
-  document.querySelectorAll("#tw-density button").forEach(b => {
-    b.addEventListener("click", () => {
-      const t = getTweaks(); t.density = b.dataset.d; setTweaks(t);
-      window.parent.postMessage({type:'__edit_mode_set_keys', edits:{density:b.dataset.d}}, '*');
-    });
-  });
-
-  // edit mode protocol
-  window.addEventListener('message', (e) => {
-    if (!e.data || !e.data.type) return;
-    if (e.data.type === '__activate_edit_mode') toggleTweaks(true);
-    if (e.data.type === '__deactivate_edit_mode') toggleTweaks(false);
-  });
-  window.parent.postMessage({type:'__edit_mode_available'}, '*');
-
-  applyTweaks(getTweaks());
-
   // ═══ I18N (PL / EN / DE) ═══
   const I18N_KEY = "welding-lang";
   const SUPPORTED_LANGS = ["pl", "en", "de"];
@@ -2684,8 +2529,7 @@
         tagline: "Independent · TIG specialist"
       },
       days: { monday: "Monday", tuesday: "Tuesday", wednesday: "Wednesday", thursday: "Thursday", friday: "Friday", saturday: "Saturday", sunday: "Sunday" },
-      hours: { closed: "Closed", closed2: "Closed", open: "Open", opens_at: "opens {day} at {time}", opens_today: "Opens today at {time}", closes_in: "closes in {dur}", h: "h", m: "m" },
-      tweaks: { title: "Tweaks", accent: "Accent", density: "Density", comfy: "Comfortable", compact: "Compact", persist: "Tweaks persist across reload." }
+      hours: { closed: "Closed", closed2: "Closed", open: "Open", opens_at: "opens {day} at {time}", opens_today: "Opens today at {time}", closes_in: "closes in {dur}", h: "h", m: "m" }
     },
     pl: {
       nav: { services: "Usługi", advisory: "Doradztwo", process: "Proces", pricing: "Cennik", about: "O nas", reviews: "Opinie", location: "Lokalizacja", contact: "Kontakt", cta: "Wycena" },
@@ -2801,8 +2645,7 @@
         tagline: "Niezależny · Specjalista TIG"
       },
       days: { monday: "Poniedziałek", tuesday: "Wtorek", wednesday: "Środa", thursday: "Czwartek", friday: "Piątek", saturday: "Sobota", sunday: "Niedziela" },
-      hours: { closed: "Zamknięte", closed2: "Zamknięte", open: "Otwarte", opens_at: "otwiera {day} o {time}", opens_today: "Otwiera dziś o {time}", closes_in: "zamyka za {dur}", h: "g", m: "min" },
-      tweaks: { title: "Ustawienia", accent: "Akcent", density: "Gęstość", comfy: "Komfort", compact: "Kompakt", persist: "Ustawienia zostają po przeładowaniu." }
+      hours: { closed: "Zamknięte", closed2: "Zamknięte", open: "Otwarte", opens_at: "otwiera {day} o {time}", opens_today: "Otwiera dziś o {time}", closes_in: "zamyka za {dur}", h: "g", m: "min" }
     },
     de: {
       nav: { services: "Leistungen", advisory: "Beratung", process: "Ablauf", pricing: "Preise", about: "Über uns", reviews: "Bewertungen", location: "Standort", contact: "Kontakt", cta: "Angebot" },
@@ -2918,8 +2761,7 @@
         tagline: "Selbständig · WIG-Spezialist"
       },
       days: { monday: "Montag", tuesday: "Dienstag", wednesday: "Mittwoch", thursday: "Donnerstag", friday: "Freitag", saturday: "Samstag", sunday: "Sonntag" },
-      hours: { closed: "Geschlossen", closed2: "Geschlossen", open: "Geöffnet", opens_at: "öffnet {day} um {time}", opens_today: "Öffnet heute um {time}", closes_in: "schließt in {dur}", h: "Std.", m: "Min." },
-      tweaks: { title: "Einstellungen", accent: "Akzent", density: "Dichte", comfy: "Komfort", compact: "Kompakt", persist: "Einstellungen bleiben nach dem Laden erhalten." }
+      hours: { closed: "Geschlossen", closed2: "Geschlossen", open: "Geöffnet", opens_at: "öffnet {day} um {time}", opens_today: "Öffnet heute um {time}", closes_in: "schließt in {dur}", h: "Std.", m: "Min." }
     }
   };
 
@@ -4007,7 +3849,6 @@
   });
 
   document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
-  document.getElementById('tweaksToggle')?.addEventListener('click', () => toggleTweaks());
 
   // Mobile nav
   (function() {
