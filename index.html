@@ -82,10 +82,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Instrument+Serif:ital@0;1&family=Barlow+Condensed:wght@500;600;700;800&family=Dancing+Script:wght@500;600&family=Exo+2:wght@300;400;600;700;800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=Instrument+Serif:ital@0;1&family=Barlow+Condensed:wght@500;600;700;800&family=Dancing+Script:wght@500;600&family=Exo+2:wght@300;400;600;700;800&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ═══════════════════════════════════════════════════
-     GD AUTOCENTRE — three variants, shared spine
+     NOWAKOWSKI TIG WELDING — industrial variant
      ═══════════════════════════════════════════════════ */
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -142,19 +142,6 @@
     --display-weight: 700;
   }
 
-  /* ═══════════ VARIANT B — EDITORIAL WORKSHOP ═══════════ */
-
-  /* ═══════════ VARIANT C — REFINED CYBER ═══════════ */
-
-  /* scanlines on cyber */
-  /* rotating accent palette by section */
-  /* cyber-specific clip-path + glow styling for buttons */
-  /* notched surfaces */
-  /* cyber .stat — keep default card look */
-  /* cyber accent roles by section */
-  /* cyber stat numbers — keep default accent color */
-
-
   /* ═══════════ TYPE ═══════════ */
   .eyebrow {
     font-family: var(--font-mono);
@@ -178,11 +165,13 @@
   }
 
   .h2 {
-    font-family: var(--font-display);
-    font-weight: var(--display-weight);
+    /* Editorial serif (Fraunces) for largest section heading — uppercase
+       on default text, lowercase on .italic-em spans; both same weight (600). */
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
     font-size: clamp(34px, 4.2vw, 60px);
     line-height: 1;
-    letter-spacing: var(--display-tracking);
+    letter-spacing: 0.01em;
     text-transform: uppercase;
   }
 
@@ -195,10 +184,12 @@
     text-transform: uppercase;
   }
 
+  /* serif accent (Fraunces italic) for lowercase emphasis spans inside .h2.
+     Weight matches parent .h2 (600); italic adds editorial contrast vs caps. */
   .italic-em {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Fraunces', serif;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 600;
     text-transform: none;
     letter-spacing: -0.02em;
   }
@@ -240,12 +231,12 @@
   /* Kill the cyber shine sweep on disabled buttons */
   /* Wrapper for Call Piotr button so tooltip can use its own ::before/::after
      without colliding with cyber's shine/corner pseudo-elements */
-  .call-gin-wrap { display: inline-block; position: relative; }
-  .call-gin-wrap .btn { display: inline-flex; }
+  .call-piotr-wrap { display: inline-block; position: relative; }
+  .call-piotr-wrap .btn { display: inline-flex; }
   /* Mobile: single-column, but keep classic "call first" hierarchy when online */
   @media (max-width: 768px) {
-    .call-gin-wrap { display: block; }
-    .call-gin-wrap .btn { display: flex; }
+    .call-piotr-wrap { display: block; }
+    .call-piotr-wrap .btn { display: flex; }
   }
   /* variant button shapes */
   body[data-variant="industrial"] .btn { border-radius: 0; }
@@ -448,16 +439,33 @@
   }
   @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
 
+  .hero-title {
+    /* Hero heading uses refined-cyber display face (Exo 2) — geometric,
+       slightly techno, but not aggressive. Hero-only override; section
+       .h2 headings keep editorial Fraunces. */
+    font-family: 'Exo 2', 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
   .hero-title .line { display: block; }
   .hero-title .accent { color: var(--accent); }
   body[data-variant="industrial"] .hero-title .accent-word {
     color: var(--accent);
   }
 
+  .hero-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-text-block .hero-title,
+  .hero-text-block .hero-sub {
+    text-align: justify;
+    text-align-last: left;
+  }
   .hero-sub {
     font-size: 16px;
     color: var(--fg-dim);
-    max-width: 46ch;
     margin-top: 16px;
   }
   .hero-cta-group {
@@ -1103,9 +1111,7 @@
 
   /* ═══════════ PROCESS ═══════════ */
   .process {
-    background: var(--bg-2);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    background: var(--bg);
   }
   .process-steps {
     display: grid;
@@ -1395,7 +1401,6 @@
   /* ═══════════ FOOTER ═══════════ */
   footer.site {
     background: var(--bg-2);
-    border-top: 1px solid var(--line);
     padding: 80px 0 32px;
   }
   .footer-grid {
@@ -1467,6 +1472,7 @@
     .nav-links, .nav-cta { display: none; }
     .menu-btn { display: inline-flex; }
     .lang-switch { margin-left: auto; margin-right: 4px; }
+    .nav-divider { display: none; }
     .lang-btn { padding: 5px 7px; font-size: 9.5px; }
     section.block { padding: 80px 0; }
     .block-head { margin-bottom: 40px; }
@@ -1785,16 +1791,17 @@
         <div style="margin-bottom:14px;">
           <span id="heroStatus" style="font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); display:inline-flex; align-items:center; gap:7px;"></span>
         </div>
+        <div class="hero-text-block">
         <h1 class="h1 hero-title" style="margin-top: 28px;">
           <span class="line"><span data-i18n="hero.title.line1_pre">TIG </span><span class="accent-word" data-i18n="hero.title.line1_em">Expert</span><span data-i18n="hero.title.line1_post">.</span></span>
           <span class="line" style="font-size: 0.55em; letter-spacing: 0.02em; line-height: 1.15; margin-top: 4px;" data-i18n="hero.title.line2">Steel · Stainless · Aluminium.</span>
         </h1>
         <p class="hero-sub" data-i18n="hero.sub">
-          Independent TIG welder. Aluminium, stainless and mild steel — fabrication, repair and restoration. Honest quotes, sound penetration, finish you can be proud of.
+          Independent TIG and MIG welder — hands-on welding plus consulting: process audits, equipment selection and welding-process optimization for shops and manufacturers.
         </p>
         <div class="hero-cta-group">
           <div class="hero-ctas">
-            <span id="callPiotrWrap" class="call-gin-wrap">
+            <span id="callPiotrWrap" class="call-piotr-wrap">
               <a href="tel:+440000000000" id="callPiotrBtn" class="btn btn-primary">
                 <svg class="ic"><use href="#i-phone"/></svg> <span data-i18n="hero.cta_call">Call Piotr · TBA</span>
               </a>
@@ -1808,6 +1815,7 @@
             <span data-i18n="hero.landline_label">Workshop landline:</span> <a href="tel:+440000000000">TBA</a> <span class="phone-hours">&middot; <span data-i18n="hero.hours_short">Mon–Fri 09:00–17:30</span></span>
           </p>
         </div>
+        </div><!-- /.hero-text-block -->
       </div>
       <div>
         <div class="mobile-sticky-stack" id="mobileStickyStack" aria-label="Pinned notes from Piotr"></div>
@@ -1880,7 +1888,7 @@
       <span class="tag" data-i18n="services.tag">What we do</span>
     </div>
     <div class="block-head">
-      <h2 class="h2"><span data-i18n="services.heading_pre">Spoiny </span><span class="italic-em" data-i18n="services.heading_em">estetyczne</span><br><span data-i18n="services.heading_post">i konstrukcyjne.</span></h2>
+      <h2 class="h2"><span data-i18n="services.heading_pre">Spoiny </span><span class="italic-em" data-i18n="services.heading_em">estetyczne</span><br><span class="italic-em" data-i18n="services.heading_post">i konstrukcyjne.</span></h2>
       <p data-i18n="services.intro">Precision TIG welding across aluminium, stainless and mild steel. Every weld explained before we strike the arc — clean prep, sound penetration, honest quotes.</p>
     </div>
     <div class="services-grid">
@@ -2269,7 +2277,7 @@
             <div>
               <span class="k" data-i18n="contact.phone">Phone</span>
               <div class="v"><a href="tel:+440000000000">TBA</a> <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--fg-faint); text-transform: uppercase; margin-left: 6px;" data-i18n="contact.phone_workshop">// Workshop — Piotr</span><span class="phone-live" id="mobileStatus"></span></div>
-              <div class="v" style="margin-top:4px;"><a href="tel:01452422405">TBA</a> <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--fg-faint); text-transform: uppercase; margin-left: 6px;" data-i18n="contact.phone_landline">// Office landline</span><span class="phone-live" id="landlineStatus"></span></div>
+              <div class="v" style="margin-top:4px;"><a href="tel:+440000000000">TBA</a> <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--fg-faint); text-transform: uppercase; margin-left: 6px;" data-i18n="contact.phone_landline">// Office landline</span><span class="phone-live" id="landlineStatus"></span></div>
             </div>
           </div>
           <div class="contact-detail">
@@ -2421,7 +2429,7 @@
       hero: {
         readout: "Workshop · Gloucester",
         title: { line1_pre: "TIG ", line1_em: "Expert", line1_post: ".", line2: "Steel · Stainless · Aluminium." },
-        sub: "Independent TIG welder — hands-on welding plus consulting: process audits, equipment selection and welding-process optimization for shops and manufacturers.",
+        sub: "Independent TIG and MIG welder — hands-on welding plus consulting: process audits, equipment selection and welding-process optimization for shops and manufacturers.",
         cta_call: "Call Piotr · TBA",
         cta_quote: "Request a quote",
         cta_note: "Piotr welds at the workshop — mobile gets picked up fastest.",
@@ -2432,7 +2440,7 @@
       trust: { 1: { title: "TIG Specialist", sub: "Aluminium, SS, MS" }, 2: { title: "Honest Quotes", sub: "No surprises" }, 3: { title: "Mobile Service", sub: "On-site callouts" }, 4: { title: "Clean Finish", sub: "Ready for paint" } },
       services: {
         index: "01 · Services", tag: "What we do",
-        heading_pre: "", heading_em: "Show-quality", heading_post: "and structural welds.",
+        heading_pre: "Structural ", heading_em: "and", heading_post: "show-quality welds.",
         intro: "Precision TIG welding across aluminium, stainless and mild steel. Every weld explained before we strike the arc — clean prep, sound penetration, honest quotes.",
         tig_alu: { title: "TIG — Aluminium", desc: "Thin-gauge to structural aluminium. AC TIG with proper prep — no porosity, no contamination, clean toes." },
         tig_ss: { title: "TIG — Stainless Steel", desc: "Food-grade, exhaust, decorative. Back-purged where it matters. Coloured heat tint on request — clean weld every time." },
@@ -2473,7 +2481,7 @@
       },
       pricing: {
         index: "05 · Pricing", tag: "Indicative prices",
-        heading_pre: "Straightforward", heading_em: "pricing.",
+        heading_pre: "Fair", heading_em: "pricing.",
         intro: "Indicative starting points for the jobs asked about most. Every job's different — call or send a photo for a firm quote before any sparks fly.",
         col_heading: "Common jobs",
         col_desc: "Starting prices for typical small jobs. Anything bigger — fabrication, restoration, motorsport — Piotr gives you a firm quote up front. No surprises.",
@@ -2529,6 +2537,20 @@
         tagline: "Independent · TIG specialist"
       },
       days: { monday: "Monday", tuesday: "Tuesday", wednesday: "Wednesday", thursday: "Thursday", friday: "Friday", saturday: "Saturday", sunday: "Sunday" },
+      greeting: { morning: "Good morning", afternoon: "Good afternoon", evening: "Good evening" },
+      status: {
+        open: "we're open",
+        closed: "we're closed",
+        closed_today: "we're closed today",
+        opens_at_today: "Opens at {time} · in {dur}",
+        opens_at_next: "Opens {day} at {time}",
+        closes_at: "Closes at {time} · in {dur}",
+        am: "AM", pm: "PM",
+        next_tomorrow: "tomorrow",
+        phone_hours: "Mon–Fri 09:00–18:00",
+        workshop_hours: "Mon–Fri 09:00–17:30",
+        phone_offline_tip: "Phone out of hours. You can still try — voicemail picks up."
+      },
       hours: { closed: "Closed", closed2: "Closed", open: "Open", opens_at: "opens {day} at {time}", opens_today: "Opens today at {time}", closes_in: "closes in {dur}", h: "h", m: "m" }
     },
     pl: {
@@ -2537,7 +2559,7 @@
       hero: {
         readout: "Warsztat · Gloucester",
         title: { line1_pre: "TIG ", line1_em: "Expert", line1_post: ".", line2: "Stal · Nierdzewna · Aluminium." },
-        sub: "Niezależny spawacz TIG — spawanie ręczne plus doradztwo: audyt procesów, dobór sprzętu i optymalizacja procesów spawalniczych dla warsztatów i producentów.",
+        sub: "Niezależny spawacz TIG i MIG — spawanie ręczne plus doradztwo: audyt procesów, dobór sprzętu i optymalizacja procesów spawalniczych dla warsztatów i producentów.",
         cta_call: "Dzwoń do Piotra · TBA",
         cta_quote: "Poproś o wycenę",
         cta_note: "Piotr spawa w warsztacie — komórkę odbiera najszybciej.",
@@ -2645,6 +2667,20 @@
         tagline: "Niezależny · Specjalista TIG"
       },
       days: { monday: "Poniedziałek", tuesday: "Wtorek", wednesday: "Środa", thursday: "Czwartek", friday: "Piątek", saturday: "Sobota", sunday: "Niedziela" },
+      greeting: { morning: "Dzień dobry", afternoon: "Dzień dobry", evening: "Dobry wieczór" },
+      status: {
+        open: "warsztat otwarty",
+        closed: "warsztat zamknięty",
+        closed_today: "dzisiaj zamknięte",
+        opens_at_today: "Otwarcie o {time} · za {dur}",
+        opens_at_next: "Otwarcie w {day} o {time}",
+        closes_at: "Zamknięcie o {time} · za {dur}",
+        am: "", pm: "",
+        next_tomorrow: "jutro",
+        phone_hours: "pn–pt 09:00–18:00",
+        workshop_hours: "pn–pt 09:00–17:30",
+        phone_offline_tip: "Telefon poza godzinami pracy. Możesz spróbować — odbierze poczta głosowa."
+      },
       hours: { closed: "Zamknięte", closed2: "Zamknięte", open: "Otwarte", opens_at: "otwiera {day} o {time}", opens_today: "Otwiera dziś o {time}", closes_in: "zamyka za {dur}", h: "g", m: "min" }
     },
     de: {
@@ -2653,7 +2689,7 @@
       hero: {
         readout: "Werkstatt · Gloucester",
         title: { line1_pre: "TIG ", line1_em: "Expert", line1_post: ".", line2: "Stahl · Edelstahl · Aluminium." },
-        sub: "Selbständiger WIG-Schweißer — Schweißen plus Beratung: Prozess-Audits, Geräteauswahl und Optimierung von Schweißprozessen für Werkstätten und Hersteller.",
+        sub: "Selbständiger WIG- und MIG-Schweißer — Schweißen plus Beratung: Prozess-Audits, Geräteauswahl und Optimierung von Schweißprozessen für Werkstätten und Hersteller.",
         cta_call: "Piotr anrufen · TBA",
         cta_quote: "Angebot anfordern",
         cta_note: "Piotr schweißt in der Werkstatt — am schnellsten erreicht über Mobil.",
@@ -2761,6 +2797,20 @@
         tagline: "Selbständig · WIG-Spezialist"
       },
       days: { monday: "Montag", tuesday: "Dienstag", wednesday: "Mittwoch", thursday: "Donnerstag", friday: "Freitag", saturday: "Samstag", sunday: "Sonntag" },
+      greeting: { morning: "Guten Morgen", afternoon: "Guten Tag", evening: "Guten Abend" },
+      status: {
+        open: "Werkstatt geöffnet",
+        closed: "Werkstatt geschlossen",
+        closed_today: "heute geschlossen",
+        opens_at_today: "Öffnet um {time} · in {dur}",
+        opens_at_next: "Öffnet {day} um {time}",
+        closes_at: "Schließt um {time} · in {dur}",
+        am: "", pm: "",
+        next_tomorrow: "morgen",
+        phone_hours: "Mo–Fr 09:00–18:00",
+        workshop_hours: "Mo–Fr 09:00–17:30",
+        phone_offline_tip: "Telefon außerhalb der Öffnungszeiten. Sie können es trotzdem versuchen — die Mailbox nimmt ab."
+      },
       hours: { closed: "Geschlossen", closed2: "Geschlossen", open: "Geöffnet", opens_at: "öffnet {day} um {time}", opens_today: "Öffnet heute um {time}", closes_in: "schließt in {dur}", h: "Std.", m: "Min." }
     }
   };
@@ -2806,8 +2856,11 @@
 
     // Re-render dynamic strings if these helpers exist by the time we run
     if (typeof window.renderHeroStatus === 'function') window.renderHeroStatus();
-    if (typeof window.renderAlert === 'function') window.renderAlert();
     if (typeof window.renderPhoneStatus === 'function') window.renderPhoneStatus();
+    // Re-fit hero title after text content changes
+    requestAnimationFrame(function() {
+      if (typeof window.syncHeroTextWidth === 'function') window.syncHeroTextWidth();
+    });
   }
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -2821,7 +2874,7 @@
   window.getLang = getLang;
 
   // ═══ THEME (light/dark) ═══
-  const THEME_KEY = "gd-theme-v1";
+  const THEME_KEY = "wpn-theme-v1";
   const moonSVG = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
   const sunSVG = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
 
@@ -2861,9 +2914,18 @@
     const greetingEl = document.getElementById('heroGreeting');
     if (!statusEl) return;
 
+    // i18n helper — uses window.tLookup / window.getLang from setLang module above
+    function t(key, params) {
+      const lang = window.getLang ? window.getLang() : 'en';
+      let s = window.tLookup ? window.tLookup(lang, key) : null;
+      if (typeof s !== 'string') return '';
+      if (params) Object.keys(params).forEach(k => { s = s.split('{' + k + '}').join(params[k]); });
+      return s;
+    }
     function getGreeting() {
       const h = new Date().getHours();
-      return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+      const key = h < 12 ? 'greeting.morning' : h < 17 ? 'greeting.afternoon' : 'greeting.evening';
+      return t(key);
     }
 
       const OPEN_H = 9;
@@ -2936,24 +2998,32 @@
 
       function fmt(h, m) { return h + ':' + String(m).padStart(2,'0'); }
       function fmt12(h, m) {
-        const period = h < 12 ? 'AM' : 'PM';
-        const h12 = h % 12 === 0 ? 12 : h % 12;
-        return h12 + ':' + String(m).padStart(2,'0') + ' ' + period;
+        const lang = window.getLang ? window.getLang() : 'en';
+        if (lang === 'en') {
+          const period = h < 12 ? t('status.am') : t('status.pm');
+          const h12 = h % 12 === 0 ? 12 : h % 12;
+          return h12 + ':' + String(m).padStart(2,'0') + ' ' + period;
+        }
+        // 24h format for PL/DE
+        return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');
       }
       function minsUntil(h, m, nowH, nowM) { return (h * 60 + m) - (nowH * 60 + nowM); }
       function fmtDuration(mins) {
         const h = Math.floor(mins / 60), m = mins % 60;
-        if (h > 0 && m > 0) return h + 'h ' + m + 'min';
-        if (h > 0) return h + 'h';
-        return m + 'min';
+        const hStr = t('hours.h'), mStr = t('hours.m');
+        if (h > 0 && m > 0) return h + hStr + ' ' + m + mStr;
+        if (h > 0) return h + hStr;
+        return m + mStr;
       }
+      const DAY_KEYS = ['days.sunday','days.monday','days.tuesday','days.wednesday','days.thursday','days.friday','days.saturday'];
       function nextOpenDay(dayOfWeek) {
         // Mon=1..Fri=5 are open
         let d = dayOfWeek;
         for (let i = 1; i <= 7; i++) {
           d = (d + 1) % 7;
-          if (d >= 1 && d <= 5) return DAYS[d];
+          if (d >= 1 && d <= 5) return t(DAY_KEYS[d]);
         }
+        return t('days.monday');
       }
 
       function getStatus() {
@@ -2970,9 +3040,9 @@
             const notePrefix = todayOverride.note ? todayOverride.note + ' · ' : '';
             return {
               open: false,
-              text: 'Closed today' + noteSep,
-              line1Tail: "we're closed today",
-              line2: notePrefix + 'opens ' + nextOpen + ' at ' + fmt12(OPEN_H, 0)
+              text: t('status.closed_today') + noteSep,
+              line1Tail: t('status.closed_today'),
+              line2: notePrefix + t('status.opens_at_next', { day: nextOpen, time: fmt12(OPEN_H, 0) })
             };
           }
           if (todayOverride.status === 'open' && todayOverride.openH != null) {
@@ -2981,24 +3051,24 @@
             if (nowMins < openMins) {
               return {
                 open: false,
-                text: 'Opens today at ' + fmt(todayOverride.openH, todayOverride.openM) + noteSep,
-                line1Tail: "we're closed",
-                line2: 'Opens at ' + fmt12(todayOverride.openH, todayOverride.openM) + ' · in ' + fmtDuration(openMins - nowMins)
+                text: t('status.closed') + noteSep,
+                line1Tail: t('status.closed'),
+                line2: t('status.opens_at_today', { time: fmt12(todayOverride.openH, todayOverride.openM), dur: fmtDuration(openMins - nowMins) })
               };
             }
             if (nowMins >= closeMins) {
               return {
                 open: false,
-                text: 'Closed' + noteSep,
-                line1Tail: "we're closed",
-                line2: 'Opens ' + nextOpen + ' at ' + fmt12(OPEN_H, 0)
+                text: t('status.closed') + noteSep,
+                line1Tail: t('status.closed'),
+                line2: t('status.opens_at_next', { day: nextOpen, time: fmt12(OPEN_H, 0) })
               };
             }
             return {
               open: true,
-              text: 'Open · closes in ' + fmtDuration(closeMins - nowMins) + noteSep,
-              line1Tail: "we're open",
-              line2: 'Closes at ' + fmt12(todayOverride.closeH, todayOverride.closeM) + ' · in ' + fmtDuration(closeMins - nowMins)
+              text: t('status.open') + noteSep,
+              line1Tail: t('status.open'),
+              line2: t('status.closes_at', { time: fmt12(todayOverride.closeH, todayOverride.closeM), dur: fmtDuration(closeMins - nowMins) })
             };
           }
         }
@@ -3009,36 +3079,37 @@
         const openMins = OPEN_H * 60;
 
         if (!isWeekday) {
+          const nextDay = nextOpenDay(dow);
           return {
             open: false,
-            text: 'Closed today · opens ' + nextOpenDay(dow) + ' at ' + fmt(OPEN_H, 0),
-            line1Tail: "we're closed today",
-            line2: 'Opens ' + nextOpenDay(dow) + ' at ' + fmt12(OPEN_H, 0)
+            text: t('status.closed_today'),
+            line1Tail: t('status.closed_today'),
+            line2: t('status.opens_at_next', { day: nextDay, time: fmt12(OPEN_H, 0) })
           };
         }
         if (nowMins < openMins) {
           return {
             open: false,
-            text: 'Opens today at ' + fmt(OPEN_H, 0),
-            line1Tail: "we're closed",
-            line2: 'Opens at ' + fmt12(OPEN_H, 0) + ' · in ' + fmtDuration(openMins - nowMins)
+            text: t('status.closed'),
+            line1Tail: t('status.closed'),
+            line2: t('status.opens_at_today', { time: fmt12(OPEN_H, 0), dur: fmtDuration(openMins - nowMins) })
           };
         }
         if (nowMins >= closeMins) {
-          const next = dow === 5 ? 'Monday' : DAYS[dow + 1];
+          const next = dow === 5 ? t('days.monday') : t(DAY_KEYS[dow + 1]);
           return {
             open: false,
-            text: 'Closed · opens ' + next + ' at ' + fmt(OPEN_H, 0),
-            line1Tail: "we're closed",
-            line2: 'Opens ' + next + ' at ' + fmt12(OPEN_H, 0)
+            text: t('status.closed'),
+            line1Tail: t('status.closed'),
+            line2: t('status.opens_at_next', { day: next, time: fmt12(OPEN_H, 0) })
           };
         }
         const minsLeft = minsUntil(CLOSE_H, CLOSE_M, h, m);
         return {
           open: true,
-          text: 'Open · closes in ' + fmtDuration(minsLeft),
-          line1Tail: "we're open",
-          line2: 'Closes at ' + fmt12(CLOSE_H, CLOSE_M) + ' · in ' + fmtDuration(minsLeft)
+          text: t('status.open'),
+          line1Tail: t('status.open'),
+          line2: t('status.closes_at', { time: fmt12(CLOSE_H, CLOSE_M), dur: fmtDuration(minsLeft) })
         };
       }
 
@@ -3048,9 +3119,9 @@
       const callPiotrWrap = document.getElementById('callPiotrWrap');
       const mobileStatusEl = document.getElementById('mobileStatus');
       const landlineStatusEl = document.getElementById('landlineStatus');
-      const PHONE_LINK = '<a href="tel:+440000000000">TBA</a>';
-      const ALERT_OPEN = 'Now booking &mdash; call ' + PHONE_LINK + ' to book your welding job';
-      const ALERT_CLOSED = '<span class="offline-tag">OFFLINE</span> To book your welding job &mdash; <a href="#contact" class="enquiry-link">leave an enquiry below</a> or call ' + PHONE_LINK + ' Mon&ndash;Fri 09:00&ndash;18:00';
+      // Alert HTML built from i18n on each render — translations carry the inline links/tags
+      function getAlertOpen() { return t('alert.open'); }
+      function getAlertClosed() { return t('alert.closed'); }
 
       // Touch-device first-tap-reveals-tooltip behaviour for the offline Call Piotr button.
       // Desktop keeps hover tooltip + single-click dial. On touch: first tap shows the
@@ -3086,18 +3157,9 @@
         }, true);
       }
 
-      // Build the offline tooltip from the same schedule source as the status dot.
-      // Keep tel: clickable — voicemail still picks up; the tooltip just sets expectations.
-      function callOfflineTip(statusText) {
-        // statusText examples:
-        //   "Closed today · opens Saturday at 09:00"
-        //   "Opens today at 09:00"
-        //   "Closed · opens Monday at 09:00"
-        //   "Closed today · Christmas Day"
-        var tail = statusText ? statusText.replace(/^Closed( today)?(\s·\s)?/, '').replace(/^Open(s)?\s/, 'opens ') : '';
-        if (!tail) return 'Phone out of hours. You can still try — voicemail will pick up.';
-        return 'Phone out of hours — ' + tail + '. You can still try; voicemail picks up.';
-      }
+      // Offline-phone tooltip — single i18n string (regex-parsing of localised statusText
+      // would be brittle; one universal "out of hours" line is enough).
+      function callOfflineTip() { return t('status.phone_offline_tip'); }
 
       function isPhoneOpen() {
         const now = new Date();
@@ -3128,7 +3190,7 @@
         statusEl.innerHTML =
           `<span style="color:${s.open ? 'var(--fg)' : 'var(--fg-faint)'};">${s.line2}</span>`;
         const phoneOpen = isPhoneOpen();
-        if (bookingAlertText) bookingAlertText.innerHTML = phoneOpen ? ALERT_OPEN : ALERT_CLOSED;
+        if (bookingAlertText) bookingAlertText.innerHTML = phoneOpen ? getAlertOpen() : getAlertClosed();
         if (bookingAlert) bookingAlert.classList.toggle('is-offline', !phoneOpen);
         if (callPiotrBtn) {
           callPiotrBtn.classList.toggle('is-offline', !phoneOpen);
@@ -3142,19 +3204,22 @@
           if (phoneOpen) {
             callPiotrWrap.removeAttribute('data-tip');
           } else {
-            callPiotrWrap.setAttribute('data-tip', callOfflineTip(s.text));
+            callPiotrWrap.setAttribute('data-tip', callOfflineTip());
           }
         }
-        // Mobile / landline: dot (green=online, grey=offline) + hours
+        // Mobile / landline: dot (green=online, grey=offline) + hours (localised)
         if (mobileStatusEl) {
           mobileStatusEl.classList.toggle('is-online', phoneOpen);
-          mobileStatusEl.innerHTML = '<span class="dot"></span>Mon\u2013Fri 09:00\u201318:00';
+          mobileStatusEl.innerHTML = '<span class="dot"></span>' + t('status.phone_hours');
         }
         if (landlineStatusEl) {
           landlineStatusEl.classList.toggle('is-online', s.open);
-          landlineStatusEl.innerHTML = '<span class="dot"></span>Mon\u2013Fri 09:00\u201317:30';
+          landlineStatusEl.innerHTML = '<span class="dot"></span>' + t('status.workshop_hours');
         }
       }
+
+      // Expose for setLang() to re-run on language change
+      window.renderHeroStatus = render;
 
       render();
       fetchOverrides(); // async — will re-render if today has a row in the sheet
@@ -3183,9 +3248,9 @@
     let stackNotes = [];          // notes currently rendered in the mobile stack
     let stackHandlersBound = false;
 
-    const STORAGE_KEY = 'gd_user_notes';
-    const POS_KEY = 'gd_pinboard_pos';
-    const DISMISSED_KEY = 'gd_dismissed_hero_notes'; // mobile: ids the visitor has closed
+    const STORAGE_KEY = 'wpn_user_notes';
+    const POS_KEY = 'wpn_pinboard_pos';
+    const DISMISSED_KEY = 'wpn_dismissed_hero_notes';
     const MAX_USER_NOTES = 2;
     const HERO_NOTES_URL = 'docs/hero-notes.json';
 
@@ -3943,6 +4008,45 @@
       clearTimeout(statusTimer);
       statusTimer = setTimeout(function() { statusEl.className = 'form-status'; }, 20000);
     }
+  })();
+
+  (function() {
+    function syncHeroTextWidth() {
+      var btnPrimary = document.querySelector('#callPiotrBtn');
+      var btnGhost = document.querySelector('.hero-ctas .btn-ghost');
+      var title = document.querySelector('.hero-text-block .hero-title');
+      var sub = document.querySelector('.hero-text-block .hero-sub');
+      if (!btnPrimary || !btnGhost || !title || !sub) return;
+      var r1 = btnPrimary.getBoundingClientRect();
+      var r2 = btnGhost.getBoundingClientRect();
+      var targetW = Math.max(r1.right, r2.right) - Math.min(r1.left, r2.left);
+      if (targetW <= 0) return;
+      title.style.setProperty('width', targetW + 'px', 'important');
+      sub.style.setProperty('width', targetW + 'px', 'important');
+      title.querySelectorAll('.line').forEach(function(line) {
+        line.style.setProperty('white-space', 'nowrap', 'important');
+        line.style.setProperty('font-size', '100px', 'important');
+        var natW = line.scrollWidth;
+        if (natW <= 0) return;
+        var ratio = targetW / natW;
+        line.style.setProperty('font-size', (100 * ratio) + 'px', 'important');
+      });
+    }
+    window.syncHeroTextWidth = syncHeroTextWidth;
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', syncHeroTextWidth);
+    } else {
+      syncHeroTextWidth();
+    }
+    // Re-run after web fonts load (Exo 2 changes glyph widths vs fallback)
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncHeroTextWidth);
+    }
+    window.addEventListener('load', syncHeroTextWidth);
+    window.addEventListener('resize', syncHeroTextWidth);
+    window.addEventListener('orientationchange', function() {
+      requestAnimationFrame(syncHeroTextWidth);
+    });
   })();
 
 </script>
