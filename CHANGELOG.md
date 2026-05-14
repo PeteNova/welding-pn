@@ -6,6 +6,38 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versioned by session da
 
 ---
 
+## [2026-05-14] — Session #2
+
+Typographic polish on the hero and removal of GD Autocentre leftovers from
+the template fork. Visual edges on `#process` and `footer.site` softened,
+mobile header tightened.
+
+### Added
+- Dynamic font-fit for hero title — wrapper `<div class="hero-text-block">` around `h1.hero-title`, `p.hero-sub` and `.hero-cta-group`. JS measures the horizontal span from the left edge of `#callPiotrBtn` to the right edge of `.btn-ghost` (covering both buttons + the inter-button gap) and applies `text-align: justify` + `text-align-last: left` to title and subtitle plus a per-line computed `font-size` (in px, via `setProperty('font-size', X, 'important')` to override the mobile `.h1 { font-size: clamp(44px, 11vw, 68px) !important }` rule) so each `.line` span fills the CTA span width exactly without word-wrapping.
+- Re-fit triggers: `DOMContentLoaded`, `document.fonts.ready` (Exo 2 vs fallback width drift), `window.load`, `window.resize`, `orientationchange`, and language switch (`setLang()` calls `window.syncHeroTextWidth` inside `requestAnimationFrame` after re-translating).
+
+### Changed
+- `#process` section: background `var(--bg-2)` → `var(--bg)` (deepest palette tone for visual separation from `#about` directly below).
+- `.hero-text-block` flex column with `align-items: flex-start` so children sit naturally above the buttons row that defines the target span.
+
+### Fixed
+- Hardcoded `tel:01452422405` (GD Autocentre landline) in the `#contact` block replaced with the project's `+440000000000` TBA placeholder — consistent with all other `tel:` links pending Piotr's real number.
+
+### Removed
+- `#process` `border-top` and `border-bottom` (the bottom border was visually doubling as the top edge of `#about`).
+- `footer.site` `border-top`.
+- Mobile-only: `.nav-divider` in the header lang-switch group (`display: none` inside the max-width media query).
+- Dead `window.renderAlert()` call from `setLang()` — function was never defined, only the guarded `typeof === 'function'` check kept the page from crashing. `renderHeroStatus` and `renderPhoneStatus` companions kept.
+- CSS placeholder block for `VARIANT B — EDITORIAL WORKSHOP` and `VARIANT C — REFINED CYBER` plus 7 orphan cyber-related comments — only the industrial variant ships.
+
+### Internal
+- localStorage key prefix migration `gd-` / `gd_` → `wpn-` / `wpn_`: `gd-theme-v1` → `wpn-theme-v1`, `gd_user_notes` → `wpn_user_notes`, `gd_pinboard_pos` → `wpn_pinboard_pos`, `gd_dismissed_hero_notes` → `wpn_dismissed_hero_notes`. Visitors who opened the site before this commit will see defaults restored once (no migration shim — single-visit project, not worth the bytes).
+- CSS class rename `.call-gin-wrap` → `.call-piotr-wrap` (5 occurrences: 2 desktop rules, 2 mobile rules, 1 HTML site of use). IDs (`#callPiotrWrap`, `#callPiotrBtn`) were already correctly named.
+- CSS header comment retitled `GD AUTOCENTRE — three variants, shared spine` → `NOWAKOWSKI TIG WELDING — industrial variant`.
+- Created `data/roadmap.json` (first time) — Phase 1 Foundation items, blockers list, full session history.
+
+---
+
 ## [2026-05-01] — Session #1
 
 First major iteration. Started from the GD Autocentre kit template, refactored
